@@ -22,6 +22,9 @@ def main():
     path = os.path.join(out_dir, "entry.txt")
     with open(path, "w", encoding="utf-8") as handle:
         handle.write(LINE)
+    with open(path, "rb") as handle:
+        if handle.read() != LINE.encode("utf-8"):
+            raise ValueError("entry.txt read-back does not match the entry line")
 
 
 if __name__ == "__main__":
